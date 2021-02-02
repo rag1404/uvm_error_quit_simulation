@@ -13,6 +13,16 @@ A program to demonstrate different ways to quit simulation based on UVM_ERROR !
 2) lets use this in the command line +uvm_set_action=uvm_test_top.*,_ALL_,UVM_ERROR,UVM_DISPLAY|UVM_EXIT
 3) Inside test_top if you see UVM_ERROR, go ahead and display the error and stop the simulation.
 
+#Example 3
+1) To stop using custom report server
+2) Below is the code
+// Look for UVM_ERROR and if the id is Inside_test then stop the simulation.
+function action_e catch(); 
+      if ((get_severity() == UVM_ERROR) && (get_id() == "Inside_test"))  begin
+      
+        get_client().die(); 
+      end
+
 ````  
  
   
